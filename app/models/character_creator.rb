@@ -20,7 +20,7 @@ private
     until new_node do
       question = ask("Ingrese la nueva pregunta:", "Por favor, ingrese una pregunta valida.")
       true_path = ask("Ingrese el nombre del personaje para la respuesta verdadera:", "Por favor, ingrese un personaje.")
-      false_path = ask("Ingrese el nombre del personaje para la respuesta false:", "Por favor, ingrese un personaje.")
+      false_path = ask("Ingrese el nombre del personaje para la respuesta falsa:", "Por favor, ingrese un personaje.")
 
       new_node = get_new_node(question, true_path, false_path)
       puts "Ninguna de tus respuestas es #{current_node.value}, por favor, ingrese una respuesta valida." unless new_node
@@ -44,7 +44,7 @@ private
                   new_node.add_child(current_node, false) : 
                   new_node.build_false_path(value: false_path)
 
-    return new_node if new_node.has_child?(current_node.value)
+    new_node if new_node.has_child?(current_node.value)
   end
 
   def create_character(new_node)
