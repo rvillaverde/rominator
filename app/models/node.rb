@@ -6,6 +6,11 @@ class Node < ActiveRecord::Base
   belongs_to :true_path, class_name: 'Node'
   belongs_to :false_path, class_name: 'Node'
 
+  # Validations
+  validates_presence_of :value
+  validate :there_is_only_one_index_node
+  validate :is_leaf_or_has_two_children
+
   def self.index
     self.where(index: true).first
   end
@@ -32,6 +37,21 @@ class Node < ActiveRecord::Base
 
   def parent
     Node.first(:conditions => ['true_path_id = :id OR false_path_id = :id', :id => id])
+  end
+
+private
+
+  def there_is_only_one_index_node
+    if self.index
+      errors.add(:index, "There must be only one index node") unless Node.index.nil?
+    else
+      errors.add(:index, "There must exist an index node") if Node.index.nil? || Node.index.id == self.id
+    end
+  end
+
+  def is_leaf_or_has_two_children
+    errors.add(:true_path, "There must be a child for the true path") if true_path.nil? && false_path
+    errors.add(:false_path, "There must be a child for the false path") if true_path && false_path.nil?
   end
 
 end
