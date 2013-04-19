@@ -19,7 +19,7 @@ class Node < ActiveRecord::Base
   end
 
   def has_next?
-    !true_path.nil? && !false_path.nil?
+    true_path || false_path
   end
 
   def get_child(path_type)
@@ -31,7 +31,7 @@ class Node < ActiveRecord::Base
   end
 
   def parent
-    Node.where('true_path_id = :id or false_path_id = :id', id: id).first
+    Node.first(:conditions => ['true_path_id = :id OR false_path_id = :id', :id => id])
   end
 
 end
