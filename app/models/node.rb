@@ -1,9 +1,5 @@
 class Node < ActiveRecord::Base
 
-  # attr_reader :value
-  # attr_reader :true_path
-  # attr_reader :false_path
-
   attr_accessible :value, :index
 
   # Relations
@@ -37,15 +33,5 @@ class Node < ActiveRecord::Base
   def parent
     Node.where('true_path_id = :id or false_path_id = :id', id: id).first
   end
-
-# private
-
-#   def set_true_path(node)
-#     @true_path = node
-#   end
-
-#   def set_false_path(node)
-#     @false_path = node
-#   end
 
 end
