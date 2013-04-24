@@ -6,6 +6,8 @@ class Node < ActiveRecord::Base
   belongs_to :true_path, class_name: 'Node'
   belongs_to :false_path, class_name: 'Node'
 
+  accepts_nested_attributes_for :true_path, :false_path
+
   # Validations
   validates_presence_of :value
   validate :there_is_only_one_index_node
@@ -44,8 +46,8 @@ private
   def there_is_only_one_index_node
     if self.index
       errors.add(:index, "There must be only one index node") unless Node.index.nil?
-    else
-      errors.add(:index, "There must exist an index node") if Node.index.nil? || Node.index.id == self.id
+    # else
+    #   errors.add(:index, "There must exist an index node") if Node.index.nil? || Node.index.id == self.id
     end
   end
 
