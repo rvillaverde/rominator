@@ -1,0 +1,19 @@
+- if @node.has_next?
+  .question-box
+    = @node.value
+    .answer-options
+      .answer-item
+        = link_to 'yes', node_next_path(@node, answer: 'yes')
+      .answer-item
+        = link_to 'no', node_next_path(@node, answer: 'no')
+- else
+  .result-box
+    %p= "Usted penso en: #{@node.value}"
+  .validation-box
+    %p= "Es cierto?"
+    .answer-item
+      = link_to 'yes', '#'
+    .answer-item
+      = link_to 'no', '#'
+    .new-character-box
+      %p= "Cliquee #{link_to 'aquí', new_node_path(node_id: @node.id, last_answer: @last_answer)} para agregar un nuevo personaje.".html_safe
