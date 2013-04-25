@@ -1,4 +1,8 @@
 Rominator::Application.routes.draw do
+  resources :nodes, :only => [:index, :show, :new, :create] do
+    get 'next'
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

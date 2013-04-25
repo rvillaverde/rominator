@@ -1,22 +1,3 @@
 .new-character-box
   %p= "Vamos a agregar un nuevo personaje, recuerde que '#{@last_node.value}' debe ser una de las respuestas"
-  .question-box
-    = form_tag nodes_path, method: :post do
-      .question-item
-        = label_tag "node_value", "En qué se diferencian su personaje y '#{@last_node.value}'?" 
-        = text_field "node", "value"
-
-      .question-item
-        = label_tag "node_true_path", "Respuesta si:"
-        = text_field "node", "true_path"
-
-      .question-item
-        = label_tag "node_false_path", "Respuesta no:"
-        = text_field "node", "false_path"
-
-      .question-data-item
-        = hidden_field_tag "last_node_id", @last_node.id
-        = hidden_field_tag "last_answer", @last_answer
-
-      .submit-item
-        = submit_tag "Guardar personaje!"
+  = render :partial => "nodes/new/form", :locals => {new_node: @new_node, last_node: @last_node}

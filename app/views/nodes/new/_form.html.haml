@@ -1,0 +1,14 @@
+- # Expects 2 parameters: new_node, last_node
+#form-content
+  = simple_form_for new_node do |f|
+    .fields
+      = f.input :value, label: "En qué se diferencian su personaje y '#{@last_node.value}'?" 
+      
+      = f.simple_fields_for :true_path do |true_path_form|
+        = true_path_form.input :value, label: "Respuesta si"
+
+      = f.simple_fields_for :false_path do |false_path_form|
+        = false_path_form.input :value, label: "Respuesta no"
+
+    .submit-item
+      = f.submit "Guardar personaje!"

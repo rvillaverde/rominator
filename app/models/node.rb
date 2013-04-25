@@ -10,11 +10,16 @@ class Node < ActiveRecord::Base
 
   # Validations
   validates_presence_of :value
-  validate :there_is_only_one_index_node
+  validate :there_is_only_one_index_node, on: :create
   validate :is_leaf_or_has_two_children
 
   def self.index
     self.where(index: true).first
+  end
+
+  def initialize_children
+    add_child Node.new, true
+    add_child Node.new, false
   end
 
   def add_child(node, path_type)
@@ -47,7 +52,7 @@ private
     if self.index
       errors.add(:index, "There must be only one index node") unless Node.index.nil?
     # else
-    #   errors.add(:index, "There must exist an index node") if Node.index.nil? || Node.index.id == self.id
+    #   errors.add(:index, "There must exist an index node") if Node.index.nil?
     end
   end
 

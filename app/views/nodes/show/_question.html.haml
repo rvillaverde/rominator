@@ -1,0 +1,8 @@
+- # Expects 1 parameter: question
+.question-box
+  = question.value
+  .answer-options
+    .answer-item
+      = link_to 'Si', node_next_path(question, answer: 'yes')
+    .answer-item
+      = link_to 'No', node_next_path(question, answer: 'no')
