@@ -17,9 +17,9 @@ class Node < ActiveRecord::Base
     self.where(index: true).first
   end
 
-  def initialize_children
-    add_child Node.new, true
-    add_child Node.new, false
+  def initialize_children(true_path_value=nil, false_path_value=nil)
+    add_child Node.new(value: true_path_value), true
+    add_child Node.new(value: false_path_value), false
   end
 
   def add_child(node, path_type)

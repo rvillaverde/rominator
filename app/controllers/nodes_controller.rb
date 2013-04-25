@@ -12,22 +12,31 @@ class NodesController < ApplicationController
   end
 
   def create
-    last_node = session[:last_node]
-    parent_node = last_node.parent
+    @last_node = session[:last_node]
+    parent_node = @last_node.parent
 
     true_path = params[:node][:true_path_attributes][:value]
     false_path = params[:node][:false_path_attributes][:value]
 
-    new_node = Node.new(value: params[:node][:value])
+    @new_node = Node.new(value: params[:node][:value])
 
-    if last_node.value.downcase == true_path.downcase
-      new_node.add_child(last_node, true)
-      new_node.build_false_path(value: false_path)
-    else
-      new_node.build_true_path(value: true_path)
-      new_node.add_child(last_node, false)
+    if @last_node.value.downcase == true_path.downcase
+      @new_node.add_child(@last_node, true)
+      @new_node.build_false_path(value: false_path)
+    elsif @last_node.value.downcase == false_path.downcase
+      @new_node.build_true_path(value: true_path)
+      @new_node.add_child(@last_node, false)
     end
-    parent_node.add_child(new_node, session[:last_answer])
+
+    if @new_node.has_next?
+      parent_node.add_child(@new_node, session[:last_answer])
+    else
+      @new_node.initialize_children(true_path, false_path)
+      @new_node.true_path.errors.add(:value, "#{@last_node.value} must be one of the answers")
+      @new_node.false_path.errors.add(:value, "#{@last_node.value} must be one of the answers")
+      render :new
+      return
+    end
 
     @index_node = Node.index
     if parent_node.save
