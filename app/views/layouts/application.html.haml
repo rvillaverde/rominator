@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title= "Rominator"
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    %header.header
+      = render :partial => 'layouts/header'
+
+    - if content_for? :notice
+      .flash-notice
+        .flash-notice-background
+        .flash-notice-content
+          = yield(:notice)
+    .content
+      = content_for?(:content) ? yield(:content) : yield
+
+    %footer.footer
+      = render :partial => 'layouts/footer'

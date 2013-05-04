@@ -1,11 +1,15 @@
 - # Expects 2 parameter: result, last_answer
 .result-box
   %p= "Usted pensó en: #{result.value}"
-.validation-box
-  %p= "Es cierto?"
-  .answer-item
-    = link_to 'Si', nodes_path
-  .answer-item
-    = link_to 'No', '#'
+.validation-box.question-group
+  .quesiton-box
+    %p= "Es cierto?"
+  .answer-options
+    .btn-link-container
+      = link_to nodes_path do 
+        .btn-link= 'Si'
+    .btn-link-container
+      = link_to '#' do
+        .btn-link#wrong-result= 'No'
   .new-character-box
     %p= "Cliqueá #{link_to 'acá', new_node_path(node_id: result.id, last_answer: last_answer)} si querés agregar un nuevo personaje.".html_safe

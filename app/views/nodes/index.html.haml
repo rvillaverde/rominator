@@ -1,6 +1,7 @@
 - if flash[:notice]
-  %p.notice= flash[:notice]
+  - content_for :notice do 
+    = flash[:notice]
 
 %p
-  Bienvenido a Rominator!
+  Bienvenido!
 %p= "Hacé click #{link_to 'acá', node_path(@index_node)} para comenzar!".html_safe

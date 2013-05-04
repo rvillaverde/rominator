@@ -1,3 +1,4 @@
 .new-character-box
-  %p= "Vamos a agregar un nuevo personaje, recuerde que '#{@last_node.value}' debe ser una de las respuestas"
+  %h2= "Vamos a agregar un nuevo personaje"
+  %h5= "Recuerde que '#{@last_node.value}' debe ser una de las respuestas."
   = render :partial => "nodes/new/form", :locals => {new_node: @new_node, last_node: @last_node}

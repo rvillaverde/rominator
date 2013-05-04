@@ -1,0 +1,222 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+// Color constants
+$dark_green: #356802;
+$mid_green: #4A9003;
+$light_green: #CBF8A7;
+$lighter_green: #E2F6CD;
+
+body {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  height: 100%;
+  background-color: $lighter_green;
+  color: $dark_green;
+  font-family: Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  &:link {
+    color: $dark_green;
+  }
+  &:visited {
+    color: $dark_green;
+  }
+  &:hover {
+    color: $mid_green;
+  }
+}
+
+.header {
+  background-color: $dark_green;
+  position: fixed;
+  width: 100%;
+
+  .header-content {
+    padding: 10px;
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+      font-family: Impact, Charcoal, sans-serif;
+
+      a#header-link {
+        &:link {
+          color: $lighter_green;
+        }        
+        &:visited {
+          color: $lighter_green;
+        }
+        &:hover {
+          color: $light_green;
+        }
+      }
+    }
+    .slogan {
+      margin: 5px 10px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 15px;
+      color: $lighter_green;
+    }
+  }
+}
+
+.footer {
+  background-color: $dark_green;
+  color: $lighter_green;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  .copyright {
+    padding: 15px;
+    text-align: center;
+    font-size: 12px;
+    a#footer-link {
+      &:link {
+        color: $lighter_green;
+      }        
+      &:visited {
+        color: $lighter_green;
+      }
+      &:hover {
+        color: $light_green;
+      }
+    }
+  }
+}
+
+.flash-notice {
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  .flash-notice-background {
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid $dark_green;
+    border-radius: 4px;
+    height: 20px;
+    background-color: white;
+    opacity: 0.4;
+  }
+  .flash-notice-content {
+    position: relative;
+    padding: 10px;
+    color: $dark_green;
+  }
+}
+
+.content {
+  padding: 60px 30px 30px;
+}
+
+.question-group {
+  .question-box {
+    margin-bottom: 10px;
+  }
+}
+
+.btn-link-container
+{
+  margin-right: 10px;
+  display: inline-block;
+  a {
+    &:link {
+      color: $dark_green;
+    }
+    &:visited {
+      color: $dark_green;
+    }
+  }
+  .btn-link {
+    border: 1px solid $dark_green;
+    border-radius: 4px;
+    padding: 2px 25px;
+    background-color: $light_green;
+    &:hover {
+      background-color: $dark_green;
+      color: $light_green;
+    }
+  }
+}
+
+.new-character-box {
+  h2 {
+    margin: 5px 0;
+  }
+  h5 {
+    margin: 0;
+    font-weight: lighter;
+  }
+  #form-content {
+    margin-top: 20px;
+    form#new_node {
+      .fields {
+        margin: 0 auto;
+        margin-bottom: 20px;
+        text-align: center;
+        div.input {
+          margin: 10px 0;
+          label {
+            display: inline-block;
+            text-align: right;
+            width: 400px;
+          }
+          input {
+            margin-left: 10px;
+            border: 1px solid $dark_green;
+            border-radius: 4px;
+            height: 20px;
+            background-color: $light_green;
+            color: $dark_green;
+            padding: 3px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.submit-item {
+  padding: 20px;
+  input[type="submit"] {
+    background-color: $light_green;
+    color: $dark_green;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid $dark_green;
+    border-radius: 4px 4px 4px 4px;
+    &:hover {
+      background-color: $dark_green;
+      color: $light_green;
+    }
+  }
+}
+
+.validation-box {
+  .answer-item {
+    display: inline-block;
+  }
+  .new-character-box {
+    display: none;
+  }
+}

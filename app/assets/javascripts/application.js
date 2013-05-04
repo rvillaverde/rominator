@@ -13,3 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+
+	$(".flash-notice").click(function() {
+		$(".flash-notice").hide("slow");
+	});
+
+	$("#wrong-result").click(function() {
+		$(".new-character-box").show();
+	});
+
+});
